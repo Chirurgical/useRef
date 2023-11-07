@@ -1,5 +1,6 @@
 import './App.css';
 import Cookie from './assets/cookie.png'
+import React, {useRef} from "react"
 
 // For this assignment you're going to make the cookie image do ONE 360 spin whenever it is clicked
 
@@ -11,9 +12,20 @@ import Cookie from './assets/cookie.png'
 
 function App() {
 
+  let cookie = useRef();
+
+  
+  let spinCookie = () => {
+    cookie.current.classList.add("spin");
+    setTimeout(() => {
+      cookie.current.classList.remove("spin");
+    }, 1000);
+  }
+
+
   return (
     <div className="app">
-      <img alt="cookie" className="spin" src={Cookie} draggable="false" />
+      <img alt="cookie" src={Cookie} draggable="false" ref={cookie} onClick={spinCookie} />
     </div>
   );
 }
